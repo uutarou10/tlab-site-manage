@@ -5,16 +5,33 @@ import Html exposing (..)
 import Messages exposing (Msg(..))
 import Model exposing (Model)
 import Projects.View
+import Route exposing (Route(..))
 import Users.View
 
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ articles model
-        , projects model
-        , users model
-        ]
+    div [] [ page model ]
+
+
+page : Model -> Html Msg
+page model =
+    let
+        currentRoute =
+            model.route
+    in
+    case currentRoute of
+        Projects ->
+            projects model
+
+        Articles ->
+            articles model
+
+        Users ->
+            users model
+
+        NotFound ->
+            text "Not found"
 
 
 articles : Model -> Html Msg
