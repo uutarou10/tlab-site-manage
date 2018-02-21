@@ -12,15 +12,19 @@ import Users.View
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ sidebar
-        , page model
+    div [ class "section" ]
+        [ div [ class "group" ]
+            [ div [ class "grid" ]
+                [ div [ class "col is-desktop-2" ] [ sidebar ]
+                , div [ class "col is-desktop-10" ] [ page model ]
+                ]
+            ]
         ]
 
 
 sidebar : Html Msg
 sidebar =
-    div []
+    div [ class "sidebar" ]
         [ nav []
             [ ul []
                 [ li []
@@ -49,18 +53,18 @@ page model =
         currentRoute =
             model.route
     in
-    case currentRoute of
-        Projects ->
-            projects model
+        case currentRoute of
+            Projects ->
+                projects model
 
-        Articles ->
-            articles model
+            Articles ->
+                articles model
 
-        Users ->
-            users model
+            Users ->
+                users model
 
-        NotFound ->
-            text "Not found"
+            NotFound ->
+                text "Not found"
 
 
 articles : Model -> Html Msg
