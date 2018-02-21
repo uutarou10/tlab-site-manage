@@ -1,8 +1,8 @@
 module Articles.Commands exposing (..)
 
 import Http
-import Json.Decode as Decode exposing (field)
-import Articles.Model exposing (Model, Article)
+import Json.Decode as Decode
+import Articles.Model exposing (Article)
 import Articles.Messages exposing (..)
 
 
@@ -21,7 +21,7 @@ articleDecoder =
         (Decode.field "created_at" Decode.string)
 
 
-articlesDecoder : Decode.Decoder Model
+articlesDecoder : Decode.Decoder (List Article)
 articlesDecoder =
     Decode.list articleDecoder
 

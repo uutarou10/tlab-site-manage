@@ -7,7 +7,7 @@ import Html.Attributes exposing (class, href)
 
 
 view : Model -> Html Msg
-view articles =
+view model =
     div []
         [ div [ class "btns" ]
             [ a [ class "btn is-plain is-round is-primary new-btn" ] [ text "新規作成" ]
@@ -25,7 +25,7 @@ view articles =
                     ]
                 ]
             , tbody []
-                (List.map row articles)
+                (List.map row model.articles)
             ]
         ]
 

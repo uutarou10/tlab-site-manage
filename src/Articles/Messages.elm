@@ -1,9 +1,11 @@
 module Articles.Messages exposing (..)
 
 import Http
-import Articles.Model exposing (Model)
+import Articles.Model exposing (Article)
 
 
 type Msg
     = NoOp
-    | OnFetchAll (Result Http.Error Model)
+    | ChangeTitle String
+    | ChangeBody String
+    | OnFetchAll (Result Http.Error (List Article))

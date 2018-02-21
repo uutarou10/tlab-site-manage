@@ -10,8 +10,14 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
+        ChangeTitle text ->
+            { model | draftTitle = text } ! []
+
+        ChangeBody text ->
+            { model | draftBody = text } ! []
+
         OnFetchAll (Ok newArticles) ->
-            ( newArticles, Cmd.none )
+            ( { model | articles = newArticles }, Cmd.none )
 
         OnFetchAll (Err error) ->
             ( model, Cmd.none )
