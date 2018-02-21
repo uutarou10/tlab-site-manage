@@ -2,7 +2,7 @@ module View exposing (..)
 
 import Articles.View
 import Html exposing (..)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, href)
 import Messages exposing (Msg(..))
 import Model exposing (Model)
 import Projects.View
@@ -24,24 +24,16 @@ view model =
 
 sidebar : Html Msg
 sidebar =
-    div [ class "sidebar" ]
-        [ nav []
-            [ ul []
-                [ li []
-                    [ i [ class "fas fa-file-alt is-fit" ]
-                        []
-                    , text "記事"
-                    ]
-                , li []
-                    [ i [ class "fas fa-clipboard is-fit" ]
-                        []
-                    , text "プロジェクト"
-                    ]
-                , li []
-                    [ i [ class "fas fa-user is-fit" ]
-                        []
-                    , text "ユーザー"
-                    ]
+    nav [ class "sidebar" ]
+        [ ul []
+            [ li []
+                [ a [ href "#/" ] [ i [ class "fas fa-file-alt is-fit" ] [], span [ class "text" ] [ text "記事" ] ]
+                ]
+            , li []
+                [ a [ href "#projects" ] [ i [ class "fas fa-clipboard is-fit" ] [], span [ class "text" ] [ text "プロジェクト管理" ] ]
+                ]
+            , li []
+                [ a [ href "#users" ] [ i [ class "fas fa-users is-fit" ] [], span [ class "text" ] [ text "ユーザー管理" ] ]
                 ]
             ]
         ]
