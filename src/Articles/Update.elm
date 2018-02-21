@@ -9,3 +9,9 @@ update msg model =
     case msg of
         NoOp ->
             ( model, Cmd.none )
+
+        OnFetchAll (Ok newArticles) ->
+            ( newArticles, Cmd.none )
+
+        OnFetchAll (Err error) ->
+            ( model, Cmd.none )
