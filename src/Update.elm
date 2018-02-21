@@ -6,6 +6,7 @@ import Model exposing (Model)
 import Projects.Update
 import Route
 import Users.Update
+import Articles.Edit
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -19,25 +20,25 @@ update msg model =
                 ( newArticles, cmd ) =
                     Articles.Update.update submsg model.articles
             in
-            ( { model | articles = newArticles }, cmd )
+                ( { model | articles = newArticles }, cmd )
 
         ProjectMsg submsg ->
             let
                 ( newProjects, cmd ) =
                     Projects.Update.update submsg model.projects
             in
-            ( { model | projects = newProjects }, cmd )
+                ( { model | projects = newProjects }, cmd )
 
         UsersMsg submsg ->
             let
                 ( newUsers, cmd ) =
                     Users.Update.update submsg model.users
             in
-            ( { model | users = newUsers }, cmd )
+                ( { model | users = newUsers }, cmd )
 
         ChangeLocation location ->
             let
                 newRoute =
                     Route.parseLocation location
             in
-            ( { model | route = newRoute }, Cmd.none )
+                ( { model | route = newRoute }, Cmd.none )

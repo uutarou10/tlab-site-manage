@@ -11,4 +11,12 @@ type alias Article =
 
 
 type alias Model =
-    List Article
+    { articles : List Article
+    , draftTitle : String
+    , draftBody : String
+    }
+
+
+initialModel : Model
+initialModel =
+    { articles = [], draftTitle = "", draftBody = "" }
