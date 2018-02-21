@@ -6,11 +6,12 @@ import Navigation exposing (Location)
 import Update exposing (update)
 import View exposing (view)
 import Articles.Commands exposing (fetchAll)
+import Route exposing (parseLocation)
 
 
 init : Location -> ( Model, Cmd Msg )
 init location =
-    ( initialModel, Cmd.map ArticleMsg fetchAll )
+    ( { initialModel | route = (parseLocation location) }, Cmd.map ArticleMsg fetchAll )
 
 
 main : Program Never Model Msg
