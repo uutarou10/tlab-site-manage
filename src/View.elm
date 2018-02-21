@@ -8,6 +8,7 @@ import Model exposing (Model)
 import Projects.View
 import Route exposing (Route(..))
 import Users.View
+import Articles.Edit
 
 
 view : Model -> Html Msg
@@ -54,16 +55,35 @@ page model =
             Articles ->
                 articles model
 
+            Article id ->
+                article model id
+
             Users ->
                 users model
 
             NotFound ->
-                text "Not found"
+                notFound
 
 
 articles : Model -> Html Msg
 articles model =
     Html.map ArticleMsg <| Articles.List.view model.articles
+
+
+article : Model -> Int -> Html Msg
+article model article_id =
+    let
+        maybeArticle =
+            model.articles
+                |> List.filter (\article -> article.id == article_id)
+                |> List.head
+    in
+        case maybeArticle of
+            Just article ->
+                Html.map ArticleMsg <| Articles.Edit.view article
+
+            Nothing ->
+                notFound
 
 
 projects : Model -> Html Msg
@@ -74,3 +94,8 @@ projects model =
 users : Model -> Html Msg
 users model =
     Html.map UsersMsg <| Users.View.view model.users
+
+
+notFound : Html Msg
+notFound =
+    text "Not Found!!"
