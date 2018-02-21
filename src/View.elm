@@ -1,6 +1,6 @@
 module View exposing (..)
 
-import Articles.View
+import Articles.List
 import Html exposing (..)
 import Html.Attributes exposing (class, href)
 import Messages exposing (Msg(..))
@@ -63,7 +63,7 @@ page model =
 
 articles : Model -> Html Msg
 articles model =
-    Html.map ArticleMsg <| Articles.View.view model.articles
+    Html.map ArticleMsg <| Articles.List.view model.articles
 
 
 projects : Model -> Html Msg

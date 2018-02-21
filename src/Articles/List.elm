@@ -1,4 +1,4 @@
-module Articles.View exposing (..)
+module Articles.List exposing (..)
 
 import Articles.Messages exposing (Msg(..))
 import Articles.Model exposing (Article, Model)
