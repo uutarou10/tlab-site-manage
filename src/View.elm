@@ -71,8 +71,18 @@ articles model =
 
 
 article : Model -> Int -> Html Msg
-article model article_id =
-    Html.map ArticleMsg <| Articles.Edit.view model.articles article_id
+article model id =
+    let
+        maybeArticle =
+            List.filter (\a -> a.id == id) model.articles.articles
+                |> List.head
+    in
+        case maybeArticle of
+            Just article ->
+                Html.map ArticleMsg <| Articles.Edit.view model.articles article
+
+            Nothing ->
+                text "nothing"
 
 
 projects : Model -> Html Msg

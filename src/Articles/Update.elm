@@ -10,6 +10,12 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
+        OnInputBody body ->
+            { model | draftBody = body } ! []
+
+        OnInputTitle title ->
+            { model | draftTitle = title } ! []
+
         OnFetchAll (Ok newArticles) ->
             ( { model | articles = newArticles }, Cmd.none )
 
