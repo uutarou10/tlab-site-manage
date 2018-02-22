@@ -2,6 +2,7 @@ module Articles.Update exposing (..)
 
 import Articles.Messages exposing (Msg(..))
 import Articles.Model exposing (Model)
+import Articles.Editor.Update
 
 
 update : Msg -> Model -> ( Model, Cmd msg )
@@ -10,11 +11,12 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        ChangeTitle text ->
-            { model | draftTitle = text } ! []
-
-        ChangeBody text ->
-            { model | draftBody = text } ! []
+        EditorMsg submsg ->
+            let
+                ( newEditorModel, cmd ) =
+                    Articles.Editor.Update.update submsg model.editor
+            in
+                { model | editor = newEditorModel } ! []
 
         OnFetchAll (Ok newArticles) ->
             ( { model | articles = newArticles }, Cmd.none )
