@@ -10,16 +10,20 @@ type alias Article =
     }
 
 
+type alias DraftArticle =
+    { title : String
+    , body : String
+    }
+
+
 type alias Model =
     { articles : List Article
-    , draftTitle : String
-    , draftBody : String
+    , draftArticle : DraftArticle
     }
 
 
 initialModel : Model
 initialModel =
     { articles = []
-    , draftTitle = ""
-    , draftBody = ""
+    , draftArticle = DraftArticle "" ""
     }

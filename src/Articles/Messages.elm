@@ -8,4 +8,5 @@ type Msg
     = NoOp
     | OnInputTitle String
     | OnInputBody String
+    | InitEditorView Article
     | OnFetchAll (Result Http.Error (List Article))

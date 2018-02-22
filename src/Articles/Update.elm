@@ -15,6 +15,9 @@ update msg model =
 
         OnInputTitle title ->
             { model | draftTitle = title } ! []
+        
+        InitEditorView article ->
+            { model | draftTitle = article.title, draftBody = article.body} ! []
 
         OnFetchAll (Ok newArticles) ->
             ( { model | articles = newArticles }, Cmd.none )
