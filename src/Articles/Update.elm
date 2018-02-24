@@ -8,7 +8,7 @@ update : Msg -> Model -> ( Model, Cmd msg )
 update msg model =
     case msg of
         NoOp ->
-            ( model, Cmd.none )
+            model ! []
 
         ChangeTitle text ->
             { model | draftTitle = text } ! []
@@ -17,7 +17,7 @@ update msg model =
             { model | draftBody = text } ! []
 
         OnFetchAll (Ok newArticles) ->
-            ( { model | articles = newArticles }, Cmd.none )
+            { model | articles = newArticles } ! []
 
         OnFetchAll (Err error) ->
-            ( model, Cmd.none )
+            model ! []
